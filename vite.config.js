@@ -1,3 +1,4 @@
+
 // @ts-nocheck
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue2";
@@ -22,6 +23,7 @@ const visualizerPlugin = () => {
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "/test/",
   plugins: [
     Components({
       transformer: "vue2",
@@ -36,10 +38,10 @@ export default defineConfig({
     visualizerPlugin(),
   ],
   server: {
-    port: 5578,
+    port: 5577,
     // 绕过反向代理来避免错误
     strictPort: true,
-    hmr: { clientPort: 5578 },
+    hmr: { clientPort: 5577 },
   },
   build: {
     target: "esnext",
@@ -50,20 +52,5 @@ export default defineConfig({
     },
     extensions: [".js", ".vue"],
   },
-  css: {
-    preprocessorOptions: {
-      less: {
-        lessOptions: {
-          modifyVars: {
-            "primary-color": "#0B8BF4",
-            "border-color-base": "#DCDFE6",
-          },
-          javascriptEnabled: true,
-        },
-      },
-      scss: {
-        additionalData: `@use "sass:math";@import "@/assets/style/variable.scss";`,
-      },
-    },
-  },
 });
+
